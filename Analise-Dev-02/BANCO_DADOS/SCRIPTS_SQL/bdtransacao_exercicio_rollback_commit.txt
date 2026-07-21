@@ -1,0 +1,83 @@
+-- Crie um banco de dados chamado bdtransacao.
+-- Valide a criação do banco.
+-- Crie as tabelas produtos e vendas conforme definidas no modelo anterior.
+CREATE TABLE PRODUTOS (
+	ID SERIAL PRIMARY KEY,
+	NOME VARCHAR(100),
+	PRECO NUMERIC(10, 2)
+);
+
+CREATE TABLE VENDAS (
+	ID SERIAL PRIMARY KEY,
+	PRODUTO_ID INT REFERENCES PRODUTOS(ID),
+	QUANTIDADE INT,
+	DATA_VENDA TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Valide a criação das tabelas.
+SELECT * FROM PRODUTOS;
+SELECT * FROM VENDAS;
+
+-- Inicie explicitamente uma transação.
+BEGIN;
+-- Insira dois produtos na tabela produtos com os seguintes dados:
+/*
+Linha 1: 'Produto A', 10.00
+
+Linha 2: 'Produto B', 20.00
+*/
+INSERT INTO PRODUTOS (NOME, PRECO)
+VALUES 
+	('Produto A', 10.00),
+	('Produto B', 20.00);
+
+SELECT * FROM PRODUTOS;
+
+-- Simule uma falha ao tentar inserir uma venda com um produto que não existe:
+-- Linha: 999, 1.
+-- A inserção falhará porque o produto_id 999 não existe na tabela produtos
+SELECT * FROM VENDAS;
+
+INSERT INTO VENDAS (PRODUTO_ID, QUANTIDADE) VALUES (999, 1);	
+
+-- Desfaça a transação.
+ROLLBACK;
+
+-- Verifique se as inserções anteriores foram revertidas.
+SELECT * FROM PRODUTOS;
+SELECT * FROM VENDAS;
+
+-- Inicie explicitamente uma nova transação.
+BEGIN;
+
+/*
+Insira dois produtos na tabela produtos com os seguintes dados:
+ 
+Linha 1: 'Produto A', 10.00
+
+Linha 2: 'Produto B', 20.00
+*/
+INSERT INTO PRODUTOS (NOME, PRECO)
+VALUES
+	('Produto A', 10.00),
+	('Produto B', 20.00);
+
+-- Verifique os IDs de produtos existentes.
+-- Obs.: os IDs podem variar, pois sendo o ID serial ao fazer rollback, os valores já utilizados são perdidos.
+SELECT * FROM PRODUTOS;
+
+/*
+Insira uma venda corretamente:
+Linha: 4,5
+*/
+SELECT * FROM VENDAS;
+INSERT INTO VENDAS (PRODUTO_ID, QUANTIDADE) VALUES (4, 5);
+
+-- Confirme a transação.
+COMMIT;
+
+-- Valide as inserções realizadas.
+SELECT * FROM PRODUTOS;
+SELECT * FROM VENDAS;
+
+

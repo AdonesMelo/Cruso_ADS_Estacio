@@ -1,0 +1,32 @@
+-- Listar todos os dados dos salões cuja área seja maior que a área média dos salões do mesmo andar.
+ SELECT *
+ FROM SALOES E
+ WHERE AREA > (SELECT AVG(AREA)
+ 	FROM SALOES I
+	WHERE E.ANDAR = I.ANDAR);
+
+-- Listar todos os dados dos autores que possuem obras utilizando teste de existência.
+SELECT *
+FROM AUTORES E
+WHERE EXISTS (SELECT * 
+	FROM OBRAS I
+	WHERE I.AUTOR = E.CODIGO);
+
+-- Listar todos os dados dos autores que não possuem obras utilizando teste de existência.
+SELECT *
+FROM AUTORES E
+WHERE NOT EXISTS (SELECT * 
+	FROM OBRAS I
+	WHERE I.AUTOR = E.CODIGO);
+
+-- Listar todos os dados dos autores que possuem mais pinturas que esculturas.
+SELECT *
+FROM AUTORES A
+WHERE (SELECT COUNT(*)
+	FROM OBRAS O
+	INNER JOIN PINTURAS USING(CODIGO)
+	WHERE O.AUTOR = A.CODIGO) > 
+	(SELECT COUNT(*)
+	FROM OBRAS O
+	INNER JOIN ESCULTURAS USING(CODIGO)
+	WHERE O.AUTOR = A.CODIGO); 

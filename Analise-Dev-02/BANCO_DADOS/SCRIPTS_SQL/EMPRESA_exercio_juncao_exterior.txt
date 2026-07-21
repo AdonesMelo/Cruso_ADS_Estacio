@@ -1,0 +1,29 @@
+-- Listar o ID e nome do cliente e o ID, ULT_NOME e cargo do empregado que o atende.
+SELECT 
+	C.ID, C.NOME,
+	E.ID, E.ULT_NOME, E.CARGO
+FROM EMPREGADO E
+	INNER JOIN CLIENTE C ON E.ID = C.VENDEDOR;
+
+-- Listar o ID, ULT_NOME e cargo do empregado que não atende nenhum cliente.
+SELECT 
+	E.ID, E.ULT_NOME, E.CARGO
+FROM EMPREGADO E
+	LEFT JOIN CLIENTE C ON E.ID = C.VENDEDOR
+WHERE C.ID IS NULL;
+
+-- Listar o ID e nome do cliente que não é atendido por nenhum empregado.
+SELECT
+	C.ID, C.NOME
+FROM EMPREGADO E
+	RIGHT JOIN CLIENTE C ON E.ID = C.VENDEDOR
+WHERE E.ID IS NULL;
+
+/*
+Listar o ID e o nome do cliente e o ID, ULT_NOME e cargo do empregado para os empregados
+que se relacionam com cliente e para os que não se relacionam.
+*/
+SELECT
+	C.ID, C.NOME
+FROM EMPREGADO E
+	FULL JOIN CLIENTE C ON E.ID = C.VENDEDOR;

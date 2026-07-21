@@ -1,0 +1,20 @@
+-- Criar banco de dados no psql
+CREATE DATABASE lb_db;
+
+-- Criar tabelas do banco clientes
+CREATE TABLE clientes (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    idade INT
+);
+
+-- Insira dados na tabela
+INSERT INTO clientes (nome, email, idade) VALUES ('João Silva', 'joao.silva@example.com', 30);
+INSERT INTO clientes (nome, email, idade) VALUES ('Maria Souza', 'maria.souza@example.com', 25);
+
+-- Consultar dados da tabela
+SELECT * FROM clientes;
+
+-- Deletar banco de dados
+DROP DATABASE lab_db;

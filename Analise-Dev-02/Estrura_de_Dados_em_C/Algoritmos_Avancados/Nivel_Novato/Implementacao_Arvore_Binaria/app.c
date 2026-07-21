@@ -1,0 +1,79 @@
+// Implementação de uma Árvore Binária em C
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Definição da estrutura do nó da árvore
+struct No {
+    char valor[50];
+    struct No* esquerda;
+    struct No* direita;
+};
+
+// Função para criar um novo nó
+struct No* criarNo(char* valor) {
+    struct No* novo = (struct No*) malloc(sizeof(struct No));
+    strcpy(novo->valor, valor);
+    novo->esquerda = NULL;
+    novo->direita = NULL;
+    return novo;
+}
+
+// Funções de percurso da árvore
+void preOrdem(struct No* raiz) {
+    if (raiz != NULL) {
+        printf("%s ", raiz->valor);
+        preOrdem(raiz->esquerda);
+        preOrdem(raiz->direita);
+    }
+}
+
+// Função para percurso em ordem
+void emOrdem(struct No* raiz) {
+    if (raiz != NULL) {
+        emOrdem(raiz->esquerda);
+        printf("%s ", raiz->valor);
+        emOrdem(raiz->direita);
+    }
+}
+
+// Função para percurso pós-ordem
+void posOrdem(struct No* raiz) {
+    if (raiz != NULL) {
+        posOrdem(raiz->esquerda);
+        posOrdem(raiz->direita);
+        printf("%s ", raiz->valor);
+    }
+}
+
+// Função para liberar a memória alocada para a árvore
+void liberar(struct No* raiz) {
+    if (raiz != NULL) {
+        liberar(raiz->esquerda);
+        liberar(raiz->direita);
+        free(raiz);
+    }
+}
+
+// Função principal para testar a implementação da árvore binária
+int main() {
+    struct No* raiz = criarNo("Hall de Entrada");
+    raiz->esquerda = criarNo("Sala de Estar");
+    raiz->direita = criarNo("Biblioteca");
+    raiz->esquerda->esquerda = criarNo("Quarto");
+ 
+    printf("Pré-ordem: ");
+    preOrdem(raiz);
+    printf("\n");
+ 
+    printf("Em ordem: ");
+    emOrdem(raiz);
+    printf("\n");
+ 
+    printf("Pós-ordem: ");
+    posOrdem(raiz);
+    printf("\n");
+ 
+    liberar(raiz);
+    return 0;
+}

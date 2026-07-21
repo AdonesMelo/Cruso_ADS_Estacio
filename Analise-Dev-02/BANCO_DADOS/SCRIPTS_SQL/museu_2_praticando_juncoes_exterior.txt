@@ -1,0 +1,24 @@
+-- Listar o nome e a nacionalidade dos autores que não possuem obras expostas. Resolver por junção.
+SELECT DISTINCT A.NOME, A.NACIONALIDADE
+FROM AUTORES A
+	LEFT JOIN OBRAS O ON O.AUTOR = A.CODIGO
+WHERE O.CODIGO IS NULL;
+
+-- Listar todos os dados dos salões que não possuem obras expostas.
+SELECT S. *
+FROM SALOES S
+	LEFT JOIN OBRAS O ON O.SALAO = S.NUMERO
+WHERE O.CODIGO IS NULL;
+
+-- Listar o código e o título das obras impressionistas ou cujo material de fabricação é argila. Resolver por junção.
+SELECT O.CODIGO, O.TITULO
+FROM ESCULTURAS E
+	RIGHT JOIN OBRAS O ON E.CODIGO = O.CODIGO
+	LEFT JOIN PINTURAS P ON P.CODIGO = O.CODIGO
+WHERE UPPER(E.MATERIAL) = 'ARGILA' OR UPPER(P.ESTILO) = 'IMPRESSIONISTA';
+
+--Listar os dados dos funcionário que estão alocados com os dados da alocação e os dados não alocados.
+SELECT *
+FROM FUNCIONARIOS F
+	LEFT JOIN ALOCACOES A ON F.CPF = A.CPF;
+

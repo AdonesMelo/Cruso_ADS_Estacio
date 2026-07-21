@@ -1,0 +1,34 @@
+-- Listar todos os dados de funcionários cujo salário seja maior que o salário médio de todos os funcionários.
+SELECT * 
+FROM FUNCIONARIOS
+WHERE SALARIO > (SELECT AVG(SALARIO)
+	FROM FUNCIONARIOS);
+	
+-- Listar todos os dados dos salões que possuem obras expostas.
+SELECT *
+FROM SALOES
+WHERE NUMERO IN (SELECT SALAO FROM OBRAS);
+
+-- Listar todos os dados dos salões que não possuem obras expostas.
+SELECT *
+FROM SALOES
+WHERE NUMERO NOT IN (SELECT SALAO FROM OBRAS);
+
+-- Listar todos os dados dos autores que não possuem obras expostas no museu.
+SELECT *
+FROM AUTORES
+WHERE CODIGO NOT IN (SELECT AUTOR 
+	FROM OBRAS
+	WHERE AUTOR IS NOT NULL);
+
+-- Listar todos os dados dos funcionários que possuem alguma alocação.
+SELECT *
+FROM FUNCIONARIOS
+WHERE CPF IN (SELECT CPF 
+	FROM ALOCACOES WHERE CPF IS NOT NULL);
+
+-- Listar todos os dados dos funcionários que não possuem alguma alocação.
+SELECT *
+FROM FUNCIONARIOS
+WHERE CPF NOT IN (SELECT CPF 
+	FROM ALOCACOES WHERE CPF IS NOT NULL);

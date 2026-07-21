@@ -1,0 +1,46 @@
+-- Listar o número dos salões que possuem obras ou que possuem funcionários alocados.
+SELECT SALAO
+FROM OBRAS
+UNION
+SELECT NUMERO
+FROM ALOCACOES;
+
+-- Listar o número dos salões que possuem obras ou que possuem funcionários alocados, listando os duplicados.
+SELECT SALAO
+FROM OBRAS
+UNION ALL
+SELECT NUMERO
+FROM ALOCACOES
+ORDER BY SALAO;
+
+-- Listar o código das obras do estilo impressionista ou feitas de argila.
+SELECT CODIGO 
+FROM PINTURAS
+WHERE UPPER(ESTILO) = 'IMPRESSIONISTA'
+UNION
+SELECT CODIGO
+FROM ESCULTURAS
+WHERE UPPER(MATERIAL) = 'ARGILA';
+
+-- Listar o código das obras do estilo impressionista ou feitas de argila, repetindo os duplicados.
+SELECT CODIGO 
+FROM PINTURAS
+WHERE UPPER(ESTILO) = 'IMPRESSIONISTA'
+UNION ALL
+SELECT CODIGO
+FROM ESCULTURAS
+WHERE UPPER(MATERIAL) = 'ARGILA';
+
+-- Listar o título e o nome do autor cujas obras são do estilo impressionista ou feitas de argila.
+SELECT 
+	O.TITULO, A.NOME
+FROM AUTORES A
+	INNER JOIN OBRAS O ON O.AUTOR = A.CODIGO
+WHERE O.CODIGO IN
+	(SELECT CODIGO 
+	FROM PINTURAS
+	WHERE UPPER(ESTILO) = 'IMPRESSIONISTA'
+	UNION
+	SELECT CODIGO
+	FROM ESCULTURAS
+	WHERE UPPER(MATERIAL) = 'ARGILA');

@@ -1,0 +1,41 @@
+-- Insira uma linha na tabela de região listando as colunas com ID 1 e nome Norte.
+INSERT INTO REGIAO (ID_REGIAO, NOME) VALUES (1, 'NORTE');
+
+-- Insira uma linha sem listar as colunas com ID 2 e nome Sul.
+INSERT INTO REGIAO (ID_REGIAO, NOME) VALUES (2, 'SUL');
+
+-- Valide a inserção.
+SELECT * FROM REGIAO;
+
+-- Insira na tabela departamento 3 linhas com um único comando com os dados:
+/*
+Linha 1: 10, 'Administrativo',1;
+
+Linha 2: 20, 'Vendas',1;
+
+Linha 3: 30, 'Compras',2;
+*/
+INSERT INTO DEPARTAMENTO 
+VALUES
+	(10, 'Administrativo', 1),
+	(20, 'vendas', 1),
+	(30, 'compras', 2);
+	
+-- Valide a inserção.
+SELECT * FROM DEPARTAMENTO;
+
+-- Execute o script populaempregado.
+Begin Transaction;
+
+INSERT INTO EMPREGADO  VALUES( 1, 'Velasques', 'Carmen', 'Presidente',29500, '05/05/2009','34567890125',10, null);
+INSERT INTO EMPREGADO  VALUES( 2, 'Neves', 'Lauro', 'Diretor de Compras',19500, '03/03/2009','23456789012',30,1);
+INSERT INTO EMPREGADO  VALUES( 3, 'Nogueira', 'Ernane','Diretor de Vendas', 18000, '07/04/2010','34567890123',20,1);
+INSERT INTO EMPREGADO  VALUES( 4, 'Queiroz', 'Mark','Gerente de Compras',8000, '11/11/2010','12345432123',30,2);
+INSERT INTO EMPREGADO  VALUES( 5, 'Rodrigues', 'Alberto', 'Vendedor',4000, '10/10/2008', '87965432123', 20,3);
+INSERT INTO EMPREGADO  VALUES( 6, 'Ugarte', 'Marlene', 'Vendedor', 3500,'03/03/2009', '87654345678',20,3);
+
+COMMIT;
+
+-- Valide a inserção.
+SELECT * FROM EMPREGADO;
+

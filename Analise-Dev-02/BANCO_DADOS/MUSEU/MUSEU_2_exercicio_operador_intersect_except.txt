@@ -1,0 +1,31 @@
+-- Listar código dos autores que não possuem obras expostas no museu, utilizando operadores de conjunto.
+SELECT CODIGO FROM AUTORES
+EXCEPT
+SELECT AUTOR FROM OBRAS;
+ 
+-- Listar código dos autores que possuem obras expostas no museu, utilizando operadores de conjunto.
+SELECT CODIGO FROM AUTORES
+INTERSECT
+SELECT AUTOR FROM OBRAS;
+
+-- Listar o código dos autores que possuem apenas pinturas no museu, utilizando operadores de conjunto.
+SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM PINTURAS)
+EXCEPT
+SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM ESCULTURAS);
+ 
+-- Listar o código dos autores que possuem apenas esculturas no museu, utilizando operadores de conjunto.
+SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM ESCULTURAS)
+EXCEPT
+SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM PINTURAS);
+
+/*
+Listar o código dos artistas que possuem ou apenas esculturas ou apenas pinturas,
+utilizando operadores de conjunto.
+*/
+(SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM PINTURAS)
+EXCEPT
+SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM ESCULTURAS))
+UNION
+(SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM ESCULTURAS)
+EXCEPT
+SELECT AUTOR FROM OBRAS WHERE CODIGO IN (SELECT CODIGO FROM PINTURAS));

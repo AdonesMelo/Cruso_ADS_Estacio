@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora IMC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="container">
+    <h1>Calculadora de IMC</h1>
+    <form class="form m-2">
+        <label class="form-label">Peso (Kg)</label>
+        <input class="form-control" type="number" id="v1"/>
+
+        <label class="form-label">Altura (m)</label>
+        <input class="form-control" type="number" id="v2"/>
+
+        <a href="#" class="btn btn-primary m-2" onclick="execultar()">Execultar</a>
+    </form>
+    <script src="imc.js"></script>
+    <script>
+        const execultar = () => {
+            const peso = eval(document.getElementById("v1").value);
+            const altura = eval(document.getElementById("v2").value);
+            const v_imc = imc(peso, altura);
+            const v_sit = situacao(v_imc);
+            alert(`IMC: ${v_imc.toFixed(2)} :: Situação: ${v_sit}`);
+        }
+    </script>
+</body>
+</html>

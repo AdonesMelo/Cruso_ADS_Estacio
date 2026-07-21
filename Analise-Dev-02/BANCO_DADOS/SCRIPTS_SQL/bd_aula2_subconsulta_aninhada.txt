@@ -1,0 +1,50 @@
+-- SUBCONSULTA ANINHADA
+-- Retornar o código e o nome do(s) funcionário(s) que ganha(m) o maior salário.
+SELECT CODIGOFUNCIONARIO, NOME
+FROM FUNCIONARIO
+WHERE SALARIO=
+    (SELECT MAX(SALARIO)
+    FROM FUNCIONARIO);
+
+-- retornar o código, o nome e o salário do(s) funcionário(s) que ganha(m) mais que a média salarial dos colaboradores.
+SELECT CODIGOFUNCIONARIO, NOME, SALARIO
+FROM FUNCIONARIO
+WHERE SALARIO>
+    (SELECT AVG(SALARIO)
+    FROM FUNCIONARIO);
+
+/*
+Retornar o código, o nome e o salário do(s) funcionário(s) que ganha(m) menos que a média salarial
+ dos colaboradores do departamento de tecnologia da informação (TI).
+*/
+SELECT CODIGOFUNCIONARIO, NOME, SALARIO
+FROM FUNCIONARIO
+WHERE SALARIO<
+    (SELECT AVG(SALARIO)
+    FROM FUNCIONARIO
+    WHERE CODIGODEPARTAMENTO IN (SELECT CODIGODEPARTAMENTO
+        FROM DEPARTAMENTO
+        WHERE NOME='Tecnologia da Informação'));
+
+/*
+Há outra maneira de resolver a consulta 03, pois você pode trocar uma subconsulta por uma junção.
+O código a seguir produz os mesmos resultados.
+*/
+SELECT CODIGOFUNCIONARIO, NOME, SALARIO
+FROM FUNCIONARIO
+WHERE SALARIO<
+    (SELECT AVG(SALARIO)
+    FROM FUNCIONARIO F JOIN DEPARTAMENTO D ON
+        (F.CODIGODEPARTAMENTO=D.CODIGODEPARTAMENTO)
+    WHERE D.NOME='Tecnologia da Informação');
+
+-- quantos funcionários recebem menos que a funcionária que possui o maior salário entre as colaboradoras de sexo feminino?
+SELECT COUNT(*) AS QUANTIDADE
+FROM FUNCIONARIO
+WHERE SALARIO<
+    (SELECT MAX(SALARIO)
+    FROM FUNCIONARIO
+    WHERE SEXO='F');
+
+
+

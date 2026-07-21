@@ -1,0 +1,25 @@
+-- Listar todos os dados dos empregados que ganham mais que o salário médio da empresa.
+SELECT *
+FROM EMPREGADO
+WHERE SALARIO > (SELECT AVG(SALARIO) 
+	FROM EMPREGADO 
+	WHERE SALARIO IS NOT NULL);
+ 
+-- Listar todos os dados dos empregados que estão alocados em departamentos da região 1.
+SELECT *
+FROM EMPREGADO
+WHERE ID_DEPTO IN (SELECT ID FROM DEPARTAMENTO WHERE ID_REGIAO = 1);
+ 
+-- Listar todos os dados dos empregados que atendem a algum cliente.
+SELECT *
+FROM EMPREGADO
+WHERE ID IN (SELECT VENDEDOR 
+	FROM CLIENTE
+	WHERE VENDEDOR IS NOT NULL);
+ 
+-- Listar todos os dados dos empregados que não atendem a algum cliente.
+SELECT *
+FROM EMPREGADO
+WHERE ID NOT IN (SELECT VENDEDOR 
+	FROM CLIENTE
+	WHERE VENDEDOR IS NOT NULL);

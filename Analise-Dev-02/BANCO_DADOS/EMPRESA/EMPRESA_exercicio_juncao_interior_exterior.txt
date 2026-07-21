@@ -1,0 +1,24 @@
+-- Listar todos os dados dos departamentos da região em que estão localizados.
+SELECT *
+FROM DEPARTAMENTO D
+	INNER JOIN  REGIAO R
+	ON R.ID_REGIAO = D.ID_REGIAO;
+
+-- Listar todos os dados dos departamentos da região em que estão na sintaxe tradicional.
+SELECT *
+FROM DEPARTAMENTO D, REGIAO R
+WHERE R.ID_REGIAO = D.ID_REGIAO;
+
+/*
+Listar o ID do empregado, o sobrenome do empregado, o ID do departamento,
+o nome do departamento e o nome da região onde está localizado o departamento.
+*/
+SELECT E.ID, E.ULT_NOME, D.ID, D.NOME, R.NOME
+FROM EMPREGADO E
+	INNER JOIN DEPARTAMENTO D ON D.ID = E.ID_DEPTO 
+	INNER JOIN REGIAO R ON R.ID_REGIAO = D.ID_REGIAO;
+
+-- Listar todos os dados dos departamentos da região utilizando USING.
+SELECT *
+FROM DEPARTAMENTO
+	INNER JOIN REGIAO USING(ID_REGIAO);

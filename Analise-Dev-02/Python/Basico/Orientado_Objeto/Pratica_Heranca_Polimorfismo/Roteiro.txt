@@ -1,0 +1,11 @@
+Roteiro de prática
+Siga o passo a passo para criação da Classe Base Animal.
+
+Defina uma classe base chamada Animal com dois métodos (o construtor da classe deve receber como parâmetro o nome do animal):
+falar(self): método abstrato para ser implementado por subclasses.
+mover(self): método abstrato para ser implementado por subclasses.
+Crie três subclasses (Cachorro, Gato, Vaca) que herdam de Animal e implementam os métodos falar e mover.
+Crie as classes (Voador e Nadador) para adicionar habilidades de movimento específicas.
+Crie uma classe Pato que herda de Animal, Voador e Nadador. Implemente os métodos falar e mover, além de um método andar.
+Implemente duas funções (fazer som e fazer movimento) que aceitam um objeto Animal e chamam os métodos falar e mover.
+Crie instâncias das classes Cachorro, Gato, Vaca e Pato. Use as funções fazer som e fazer movimento para verificar os comportamentos.

@@ -1,0 +1,52 @@
+-- CONSULTA COM FUNÇÃO DATA HORA
+SELECT CURRENT_DATE AS "Data Atual",
+    CURRENT_TIME AS "Hora Atual",
+    CURRENT_TIMESTAMP "Data e Hora atuais",
+    EXTRACT( DOY FROM CURRENT_DATE) AS "Dia do ano",
+-- DOW 0 - domingo, 1 - segunda, ..., 6 - sábado
+    EXTRACT( DOW FROM CURRENT_DATE) AS "Dia da semana",
+    EXTRACT( DAY FROM CURRENT_DATE) AS "Dia Atual",
+    EXTRACT( MONTH FROM CURRENT_DATE) AS "Mês Atual",
+    EXTRACT( YEAR FROM CURRENT_DATE) AS "Ano Atual",
+    EXTRACT( CENTURY FROM CURRENT_DATE) AS "Século Atual";
+	
+-- Exibindo o nome do dia da semana
+SELECT CASE WHEN extract(dow from current_date) = 0 THEN 'domingo'
+    WHEN extract(dow from current_date) = 1 THEN 'segunda-feira'
+    WHEN extract(dow from current_date) = 2 THEN 'terça-feira'
+    WHEN extract(dow from current_date) = 3 THEN 'quarta-feira'
+    WHEN extract(dow from current_date) = 4 THEN 'quinta-feira'
+    WHEN extract(dow from current_date) = 5 THEN 'sexta-feira'
+    WHEN extract(dow from current_date)=6 THEN 'sábado'
+END AS "Nome do dia da semana";
+
+-- Calculando idade e faixa etária
+SELECT NOME,
+    DTNASCIMENTO,
+    AGE(DTNASCIMENTO) AS "Idade [ano/mês/dia]",
+    EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) AS "Idade do Aluno"
+FROM ALUNO;
+
+-- EXIBIR O NOME, IDADE E A FAIXA ETARIA DOS ALUNOS
+SELECT NOME,
+    EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) AS "Idade do Aluno",
+    CASE WHEN EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) <=20 THEN '1. até 20 anos'
+        WHEN EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) BETWEEN 21 AND 30 THEN '2. 21 a 30 anos'
+        WHEN EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) BETWEEN 31 AND 40 THEN '3. 31 a 40 anos'
+        WHEN EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) BETWEEN 41 AND 50 THEN '4. 41 a 50 anos'
+        WHEN EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) BETWEEN 51 AND 60 THEN '5. 51 a 60 anos'
+        WHEN EXTRACT(YEAR FROM AGE(DTNASCIMENTO)) > 60 THEN '6. mais de 60 anos'
+    END AS "Faixa Etária"
+FROM ALUNO;
+
+-- ATIVIDADE
+SELECT CURRENT_DATE AS "DATA DE EMISSÃO DE RELATÓRIO",
+	CODIGOALUNO AS "MATRÍCULA",
+	DTNASCIMENTO AS "DATA DE NASCIMENTO",
+	CASE
+		WHEN SEXO = 'M' THEN 'MASCULINO'
+		WHEN SEXO = 'F' THEN 'FEMININO'
+	END AS SEXO
+FROM ALUNO;
+
+SELECT * FROM ALUNO;

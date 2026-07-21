@@ -1,0 +1,38 @@
+-- Listar o ID dos empregados que são vendedores e que trabalham nos departamentos 20 ou 30.
+SELECT ID FROM EMPREGADO WHERE UPPER(CARGO) = 'VENDEDOR'
+INTERSECT
+SELECT ID FROM EMPREGADO WHERE ID_DEPTO IN (20, 30);
+
+-- Listar o ID dos empregados que trabalham nos departamentos 20 ou 30 e que não são vendedores.
+SELECT ID FROM EMPREGADO WHERE ID_DEPTO IN (20, 30)
+EXCEPT
+SELECT ID FROM EMPREGADO WHERE UPPER(CARGO) = 'VENDEDOR';
+
+-- Listar o ID dos empregados que são vendedores e que não trabalham nos departamentos 20 ou 30.
+SELECT ID FROM EMPREGADO WHERE UPPER(CARGO) = 'VENDEDOR'
+EXCEPT
+SELECT ID FROM EMPREGADO WHERE ID_DEPTO IN (20, 30);
+
+-- Listar todos os dados dos departamentos que estão na região 1 e que possuam empregados com o cargo de vendedor.
+SELECT * FROM DEPARTAMENTO WHERE ID_REGIAO = 1
+INTERSECT
+SELECT * FROM DEPARTAMENTO 
+WHERE ID IN (SELECT ID_DEPTO FROM EMPREGADO WHERE UPPER(CARGO) = 'VENDEDOR'); 
+
+/*
+Listar todos os dados dos departamentos que estão na região 1 e que não possuam empregados
+com o cargo de vendedor.
+*/
+SELECT * FROM DEPARTAMENTO WHERE ID_REGIAO = 1
+EXCEPT
+SELECT * FROM DEPARTAMENTO 
+WHERE ID IN (SELECT ID_DEPTO FROM EMPREGADO WHERE UPPER(CARGO) = 'VENDEDOR'); 
+
+/*
+Listar todos os dados dos departamentos que possuam empregados
+com o cargo de vendedor e que não estão na região 1.
+*/
+SELECT * FROM DEPARTAMENTO 
+WHERE ID IN (SELECT ID_DEPTO FROM EMPREGADO WHERE UPPER(CARGO) = 'VENDEDOR')
+EXCEPT
+SELECT * FROM DEPARTAMENTO WHERE ID_REGIAO = 1;

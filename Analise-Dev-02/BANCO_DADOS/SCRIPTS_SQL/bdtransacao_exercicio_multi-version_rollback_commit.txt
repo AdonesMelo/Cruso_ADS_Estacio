@@ -1,0 +1,67 @@
+/*
+Acesse o PostgreSQL utilizando o PGAdmin4.
+
+Abra o query tool no banco bdtransacao.
+
+Acesse o PSQL.
+
+Faça conexão no bdtransacao no pslq.
+*/
+
+-- No pgadmin:
+--Inicie uma transação.
+BEGIN;
+
+-- Atualize o preço do produto de nome ‘Produto A’ para 30.
+UPDATE PRODUTOS SET PRECO = 30.00 WHERE NOME = 'Produto A';
+
+-- Valide a atualização do preço.
+SELECT * FROM PRODUTOS;
+
+/*
+No PSQL:
+Consulte a tabela produtos.
+SELECT * FROM PRODUTOS;
+
+Inicie uma transação.
+BEGIN;
+
+Atualize o preço do produto de nome ‘Produto B’ para 60.
+UPDATE PRODUTOS SET PRECO = 60.00 WHERE NOME = 'Produto B';
+
+Consulte a tabela produtos.
+SELECT * FROM PRODUTOS;
+*/
+
+-- No pgAdmin:
+-- Consulte a tabela produtos.
+SELECT * FROM PRODUTOS;
+
+-- Confirme a transação.
+COMMIT;
+
+-- Consulte novamente a tabela produtos. 
+SELECT * FROM PRODUTOS;
+
+
+/*
+No PSQL:
+Consulte novamente a tabela produtos.
+SELECT * FROM PRODUTOS;
+
+
+Desfaça a alteração do produto B.
+ROLLBACK;
+
+Consulte novamente a tabela produtos.
+SELECT * FROM PRODUTOS;
+*/
+
+-- No pgAdmin:
+--Consulte novamente a tabela produtos.
+SELECT * FROM PRODUTOS;
+
+
+
+
+

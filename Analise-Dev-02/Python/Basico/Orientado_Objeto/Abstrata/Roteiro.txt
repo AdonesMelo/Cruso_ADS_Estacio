@@ -1,0 +1,9 @@
+Cenário 1
+Acompanhe o passo a passo.
+
+Criar um sistema de classes para modelar diferentes tipos de veículos, utilizando uma classe abstrata como base para definir a interface comum.
+Chamar os métodos mover() e ligar() em cada instância.
+
+Primeiro, faça o seguinte exercício:
+
+A partir da solução do cenário 1, crie uma classe chamada Aviao que herda de Veículo e implemente os métodos mover() e ligar() para representar o comportamento de um avião.

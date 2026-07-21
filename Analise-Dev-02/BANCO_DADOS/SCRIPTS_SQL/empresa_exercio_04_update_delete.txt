@@ -1,0 +1,34 @@
+-- Altere o nome da região de ID para Exemplo1.
+SELECT * FROM REGIAO;
+
+UPDATE REGIAO SET NOME = 'Exemplo1' WHERE ID_REGIAO = 1;
+
+-- Valide a alteração.
+SELECT * FROM REGIAO;
+
+-- Altere o salário de todos os empregados para 10000.
+UPDATE EMPREGADO SET SALARIO = 10000;
+
+-- Valide a alteração.
+SELECT ID, SALARIO FROM EMPREGADO;
+
+-- Elimine todos os empregados.
+DELETE FROM EMPREGADO;
+
+-- Valide a eliminação.
+SELECT * FROM EMPREGADO;
+
+-- Elimine a região de ID 1.
+-- Não consegue porque tem departamento apontando para a região 1
+DELETE FROM REGIAO WHERE ID_REGIAO = 1; 
+
+-- Elimine os departamentos da região 1.
+DELETE FROM DEPARTAMENTO WHERE ID_REGIAO = 1;
+
+-- Comande novamente delete na região de ID 1.
+DELETE FROM REGIAO WHERE ID_REGIAO = 1; 
+
+-- Agora sim! Valide a eliminação.
+SELECT * FROM REGIAO;
+
+

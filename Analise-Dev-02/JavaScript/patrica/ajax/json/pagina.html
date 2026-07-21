@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Json</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="container">
+    <h1>API de Teste randomuser</h1>
+    <form>
+        <a class="btn btn-primary" href="#" onclick="executar()">Executar</a>
+    </form>
+    <ul id="retorno"></ul>
+    <script src="exe_json.js"></script>
+    <script>
+        const executar = () => {
+            getUser('retorno');
+        }
+    </script>
+</body>
+</html>

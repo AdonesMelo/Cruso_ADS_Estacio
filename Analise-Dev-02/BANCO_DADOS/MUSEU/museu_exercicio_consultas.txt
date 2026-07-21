@@ -1,0 +1,41 @@
+-- Listar o conteúdo da tabela de autores.
+SELECT * FROM AUTORES;
+
+-- Listar o nome e a nacionalidade de todos os autores.
+SELECT NOME, NACIONALIDADE FROM AUTORES;
+
+-- Listar CPF, nome, salário e salário anual dos funcionários.
+SELECT * FROM FUNCIONARIOS;
+
+SELECT CPF, NOME, SALARIO, SALARIO * 40 / 3 AS "SALARIO ANUAL" FROM FUNCIONARIOS;
+
+-- Listar o nome do autor concatenado com a sua nacionalidade com o alias de coluna nome e nacionalidade.
+SELECT * FROM AUTORES;
+
+SELECT NOME || ' --> ' || NACIONALIDADE AS NOME_NACIONALIDADE FROM AUTORES;
+
+-- Listar o nome do autor concatenado com a sua nacionalidade.
+SELECT NOME || ' --> ' || NACIONALIDADE FROM AUTORES;
+
+-- Listar a área média com o alias área média, e número de salões com o alias 'Total de salões'.
+SELECT * FROM SALOES;
+
+SELECT AVG(AREA) AS "ÁREA MÉDIA", COUNT(*) AS "TOTAL DE SALÕES" FROM SALOES;
+
+-- Listar o total de pinturas com o alias 'Quantidade de pinturas'.
+SELECT * FROM PINTURAS;
+
+SELECT COUNT(*) AS "QUANTIDADE DE PINTURA" FROM PINTURAS;
+
+-- Listar o maior peso de uma escultura.
+SELECT * FROM ESCULTURAS;
+
+SELECT MAX(PESO) AS "MAIOR PESO" FROM ESCULTURAS;
+
+-- Listar o título de uma obra que aparece primeiro na ordem alfabética crescente.
+SELECT * FROM OBRAS;
+
+SELECT MIN(TITULO) AS "PRIM_ORDEM_ALF_CRESC" FROM OBRAS;
+
+
+	

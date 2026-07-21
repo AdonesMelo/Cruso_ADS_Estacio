@@ -1,0 +1,45 @@
+-- Listar o ID dos empregados que são vendedores ou que trabalham nos departamentos 20 ou 30.
+SELECT 
+	ID
+FROM EMPREGADO
+WHERE UPPER(CARGO) = 'VENDEDOR'
+UNION
+SELECT 
+	ID
+FROM EMPREGADO
+WHERE ID_DEPTO IN (20, 30);
+
+-- Listar o ID dos empregados que são vendedores ou que trabalham nos departamentos 20 ou 30. Repetir os duplicados.
+SELECT 
+	ID
+FROM EMPREGADO
+WHERE UPPER(CARGO) = 'VENDEDOR'
+UNION ALL
+SELECT 
+	ID
+FROM EMPREGADO
+WHERE ID_DEPTO IN (20, 30)
+ORDER BY 1;
+
+-- Listar todos os dados dos empregados que são vendedores ou que trabalham nos departamentos 10 ou 30.
+SELECT 
+	ID
+FROM EMPREGADO
+WHERE UPPER(CARGO) = 'VENDEDOR'
+UNION
+SELECT 
+	ID
+FROM EMPREGADO
+WHERE ID_DEPTO IN (10, 30);
+
+-- Listar todos os dados dos departamentos que estão na região 1 ou que possuem empregados com cargo de vendedor.
+SELECT * 
+FROM DEPARTAMENTO
+WHERE ID_REGIAO = 1
+UNION
+SELECT *
+FROM DEPARTAMENTO
+WHERE ID IN 
+	(SELECT ID_DEPTO
+	FROM EMPREGADO
+	WHERE UPPER(CARGO) = 'VENDEDOR');

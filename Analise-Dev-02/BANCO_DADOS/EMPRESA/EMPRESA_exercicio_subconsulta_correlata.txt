@@ -1,0 +1,23 @@
+-- Listar os empregados que ganham pelo menos o salário médio de seu departamento.
+SELECT 
+	ULT_NOME, CARGO, SALARIO, ID_DEPTO
+FROM EMPREGADO E
+WHERE SALARIO >= (SELECT AVG(SALARIO)
+	FROM EMPREGADO I
+	WHERE I.ID_DEPTO = E.ID_DEPTO);
+
+-- Listar o ID, ULT_NOME e cargo dos empregados que atendem a algum cliente, utilizando teste de existência.
+SELECT 
+	ID, ULT_NOME, CARGO, SALARIO, ID_DEPTO
+FROM EMPREGADO E
+WHERE EXISTS (SELECT VENDEDOR
+	FROM CLIENTE C
+	WHERE C.VENDEDOR = E.ID);
+
+-- Listar o ID, ULT_NOME e cargo dos empregados que não atendem a algum cliente, utilizando teste de existência.
+SELECT 
+	ID, ULT_NOME, CARGO, SALARIO, ID_DEPTO
+FROM EMPREGADO E
+WHERE NOT EXISTS (SELECT VENDEDOR
+	FROM CLIENTE C
+	WHERE C.VENDEDOR = E.ID);

@@ -1,0 +1,9 @@
+Cenário 2
+Acompanhe o passo a passo.
+
+Criar uma classe chamada Calculadora que tenha métodos para realizar operações matemáticas básicas: adição, subtração, multiplicação e divisão.
+Implementar tratamento de exceções para evitar tipos de dados incorretos
+
+Em seguida, realize o exercício proposto a seguir.
+
+A partir da solução do cenário 2, implemente a correção do erro de divisão por zero

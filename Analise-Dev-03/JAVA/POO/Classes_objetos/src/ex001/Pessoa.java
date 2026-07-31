@@ -30,6 +30,9 @@ class Pessoa {
     //
     public static void main(String[] args) {
         Pessoa p1 = new Pessoa("João");
-        System.out.println("Pessoa 1: " + p1.getNome());
+        System.out.println("[Pessoa 1] Nome: " + p1.getNome() + ", Código Identificador: " + p1.getCodigo_identificador());
+
+        Pessoa p2 = new Pessoa("Maria");
+        System.out.println("[Pessoa 2] Nome: " + p2.getNome() + ", Código Identificador: " + p2.getCodigo_identificador());
     }
 }

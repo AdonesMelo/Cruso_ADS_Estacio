@@ -12,7 +12,9 @@ public class Referencia {
         System.out.println ("Aluno 1: " + a1.recuperaNome());
         System.out.println ("Aluno 2: " + a2.recuperaNome());
 
-        a2 = a1;
+        // A mudança não mudara a saída
+        //a2 = a1;
+        a1 = a2;
         a2.definirNome ("Ana");
         System.out.println ("Aluno 1: " + a1.recuperaNome());
 

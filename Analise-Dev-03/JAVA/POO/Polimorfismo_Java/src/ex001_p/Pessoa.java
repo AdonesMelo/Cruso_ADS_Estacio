@@ -1,4 +1,4 @@
-package ex001;
+package ex001_p;
 
 // Classe abstrata
 public abstract class Pessoa {

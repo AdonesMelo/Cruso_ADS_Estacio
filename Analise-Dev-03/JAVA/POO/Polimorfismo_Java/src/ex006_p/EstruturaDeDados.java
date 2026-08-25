@@ -1,4 +1,4 @@
-package ex006;
+package ex006_p;
 
 // Definindo uma interface para Estrutura de Dados
 interface EstruturaDeDados {

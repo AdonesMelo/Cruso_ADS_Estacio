@@ -1,4 +1,4 @@
-package ex006;
+package ex006_p;
 
 import java.util.LinkedList;
 import java.util.Queue;

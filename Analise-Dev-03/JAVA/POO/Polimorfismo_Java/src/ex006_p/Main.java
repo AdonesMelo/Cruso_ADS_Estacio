@@ -1,4 +1,4 @@
-package ex006;
+package ex006_p;
 
 public class Main {
     public static void main(String[] args) {

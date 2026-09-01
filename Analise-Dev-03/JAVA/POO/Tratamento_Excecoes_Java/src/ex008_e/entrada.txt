@@ -1,0 +1,3 @@
+Óla, Mundo!
+Java é uma linguagem de programação de alto nível, orientada a objetos, com tipagem dinâmica e multi-paradigma.
+Programação orientada a objetos (POO) é um paradigma de programação que usa os conceitos de objetos e classes para criar programas.
